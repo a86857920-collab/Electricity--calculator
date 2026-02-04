@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>حاسبة استهلاك الكهرباء</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      direction: rtl;
+    }
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      width: 320px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #0a7c3e;
+    }
+    .note {
+      font-size: 13px;
+      color: #666;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>حاسبة استهلاك الكهرباء</h2>
+
+    <p>سعر الكيلو واط ثابت: <strong>0.30 درهم</strong></p>
+
+    <input
+      type="number"
+      placeholder="أدخل الاستهلاك بالكيلو واط"
+      oninput="calculate(this.value)"
+    >
+
+    <div class="result" id="output">
+      التكلفة: 0 درهم
+    </div>
+
+    <div class="note">
+      هذه حاسبة تعليمية لأغراض مدرسية
+    </div>
+  </div>
+
+  <script>
+    function calculate(value) {
+      let price = 0.30;
+      let total = value * price;
+
+      if (!value || value < 0) {
+        document.getElementById("output").innerText = "التكلفة: 0 درهم";
+      } else {
+        document.getElementById("output").innerText =
+          "التكلفة: " + total.toLocaleString('ar-AE', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          }) + " درهم";
+      }
+    }
+  </script>
+
+</body>
+</html>
